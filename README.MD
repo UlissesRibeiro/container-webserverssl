@@ -96,6 +96,6 @@ Os vhosts, são adicionados no path <b>/etc/apache2/sites-available/</b>, para a
 <li>4.Adicione suas alterações ao git(git add .)</li>
 <li>5.Confirme suas alterações(git commit -m "texto descritivo do que fez")</li>
 <li>6.Suba seu branch(git push origin seu-branch)</li>
-<li>7.Faça uma solicitação de merge request</li>
+<li>7.Faça uma solicitação de merge request para o branch : <b>updates</b></li>
 </ul>
 </p>
