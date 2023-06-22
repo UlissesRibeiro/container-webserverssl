@@ -6,6 +6,7 @@
 - [Pacotes instalados](#pacotes-instalados)
 - [Criando vhost](#criando-vhost)
 - [Testando](#testando)
+- [Contribuindo](#contribuindo)
 
 
 
@@ -46,7 +47,7 @@ E por se tratar de SSL iremos utilizar o protocolo HTTPS, utilize uma porta refe
 
 <p>Segue o exemplo de vhost que será necessário para utilizarmos aqui no nosso projeto :
 <br>
-Lembre de alterar o path dos certificados, também alterar o domínio em ServerName.
+Lembre de alterar o path dos certificados, também alterar o domínio em ServerName.<br>
 <b>Obs.: Caso tenha vários certificados, faça um vhost para cada</b>
 
     <VirtualHost *:443>
@@ -80,6 +81,21 @@ Seja organizado, crie um diretório para armazenar os vhosts, adote um padrão c
 Os vhosts, são adicionados no path <b>/etc/apache2/sites-available/</b>, para ativa-los, rode : <b>a2ensite *.conf </b> , restarte o apache .
 
 ## Testando
-<p>Abra o browser de sua preferência, e na barra de endereço entre com : <b>https://seusite.com.br:8443</b> , lembre, você mapeou uma porta para HTTPS(8443), se tiver seguido todo o pass-a-passo, na barra de endereço terá o cadeado lindo de ai meu deus! 🔒 seusite.com.br:8443 , clique no cadeado para poder ver as informações do certificado.
+<p>Abra o browser de sua preferência, e na barra de endereço entre com : <b>https://seusite.com.br:8443</b> , lembre, você mapeou uma porta para HTTPS(8443), se tiver seguido todo o pass-a-passo, na barra de endereço terá o cadeado lindo de ai meu deus! <b>🔒 seusite.com.br:8443</b> , clique no cadeado para poder ver as informações do certificado.
 </p>
 <b>Dica : Se estiver usando linux, pode utilizar o comando : openssl s_client -connect seusite.com.br:8443, ele vai retornar as informações do certificado no terminal</b>
+
+<br><b>Obs.: Não irei disponibilizar a imagem no hub docker, por ter informações confidenciais, por isso o passo a passo de como criar e configurar!</b>
+
+## Contribuindo
+<p>Qualquer contribuição que você fizer será bem vinda, analisada e se viável, atualizada no projeto!
+<ul>
+<li>1.Faça um fork do projeto</li>
+<li>2.Clone o seu fork para sua maquina(git clone url-do-projeto.git)</li>
+<li>3.Crie um branch para sua modificação/atualização(git checkout -b seu-branch)</li>
+<li>4.Adicione suas alterações ao git(git add .)</li>
+<li>5.Confirme suas alterações(git commit -m "texto descritivo do que fez")</li>
+<li>6.Suba seu branch(git push origin seu-branch)</li>
+<li>7.Faça uma solicitação de merge request</li>
+</ul>
+</p>
