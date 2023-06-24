@@ -6,6 +6,7 @@
 - [Pacotes instalados](#pacotes-instalados)
 - [Criando vhost](#criando-vhost)
 - [Testando](#testando)
+- [Docker-compose](#docker-compose)
 - [Contribuindo](#contribuindo)
 
 
@@ -19,6 +20,8 @@
 Rode no terminal : <br>
 
     docker run -dit --name webserver_test_ssl -h webserverssl -p 8443:443 -v /seu_path_de_certificados/:/path_que_quer_alocar --restart always ubuntu:20.04 
+<br><b>Obs.: Por ser uma aplicação simples, limite o uso de memoria : -m 512M --memory-swap 800M, caso já tenha criado o container, rode um update com esses parametros : docker update -m 512M --memory-swap 800M nome_do_container , e em seguida docker restart nome_do_container</b><br>
+
 Sendo <b>/seu_path_de_certificados</b> onde estão seus certificados do tipo SSL, altere para o seu path. A minha estrutura é : <br>
     
     /certificado/
@@ -85,6 +88,33 @@ Os vhosts, são adicionados no path <b>/etc/apache2/sites-available/</b>, para a
 </p>
 <b>Dica : Se estiver usando linux, pode utilizar o comando : openssl s_client -connect seusite.com.br:8443, ele vai retornar as informações do certificado no terminal</b>
 
+## Docker-compose
+<p>Caso queira facilitar a subida do container, irei mostrar como fazer via docker-compose :<br>
+
+- Considerando que você criou seu container, nesse momento você já pode fazer uma imagem a partir dele, use : <b>docker commit seu_container seu_repositorio/seu_container</b> e em seguida : <b>docker push seu_repositorio/seu_container</b>, o que fizemos aqui foi subir a imagem do container para o hub do docker.
+- Agora vamos criar o docker-compose a partir da imagem que você subiu :<br>
+
+        version: '3'
+        services:
+        webserver:
+            image: seu_repositorio/sua_imagem
+            container_name: nome_que_quer_colocar
+            hostname: hostname-pc
+            ports:
+            - 8243:443
+            - 8035:80
+            volumes:
+            - /path:/path
+            restart: always
+            mem_limit: 1g
+            cpus: 0.5
+            command: sh -c "service apache2 start && tail -f /dev/null"
+
+- mem_limit : define a quantidade de memoria
+- cpu : cpu ne.
+<br>
+- Salve o arquivo como docker-compose.yml, por se tratar de um arquivo yml, cuidado com a indentação, utilize um verificador de yml, como o <a href="https://yamlchecker.com/">yaml checker</a> .
+</p>
 <br><b>Obs.: Não irei disponibilizar a imagem no hub docker, por ter informações confidenciais, por isso o passo a passo de como criar e configurar!</b>
 
 ## Contribuindo
